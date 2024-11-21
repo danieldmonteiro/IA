@@ -104,7 +104,7 @@ def testeSel1():
     print("\nDigite quatro números inteiro (separados por espaço): \n")
     A, B, C, D = map(int, input().split())
 
-    if B > C and D > A and (C + D) > (A + B) and C >= 0 and D >= 0 and A % 2 == 0:
+    if B > C and D > A and (C + D) > (A + B) and C > 0 and D > 0 and A % 2 == 0:
         print("\nValores aceitos!\n")
     else:
         print("\nValores não aceiros!\n")
