@@ -1,5 +1,5 @@
 #Exercício 7.1.
-"""
+
 print("\nLeitura de Arquivo e Operações com Números\n")
 
 def leitura_arquivo():
@@ -319,8 +319,76 @@ def analisar_uso_cpu():
         print(f"\nOcorreu um erro: {e}\n")
 
 analisar_uso_cpu()
-"""
+
 #Exercício 7.6.
 
 print("\nAcompanhamento de Alocações Spot EC2\n")
 
+import csv
+
+def analisar_tempo_vida_instancias():
+
+    try:
+         
+        #Solicita o nome do arquivo
+        nome_arquivo = input("\nDigite o nome do arquivo CSV (com extensão): \n")
+
+        #Dicionários para armazenar dados e cálculos
+        tempos_de_vida = {}  #Armazena o tempo de vida de cada InstânciaID
+        total_tempo_vida = 0
+        quantidade_instancias = 0
+
+        #Abrir o arquivo CSV
+        with open(nome_arquivo, 'r', encoding='utf-8') as arquivo_csv:
+            leitor = csv.DictReader(arquivo_csv, delimiter=',')
+
+            #Remover espaços extras dos nomes das colunas
+            leitor.fieldnames = [nome.strip() for nome in leitor.fieldnames]
+            # print(f"\nNomes das colunas no arquivo (ajustados): {leitor.fieldnames}\n")
+
+            #Iterar sobre as linhas do CSV
+            for linha in leitor:
+                try:
+                    #Extrair dados da linha
+                    instancia_id = linha['InstânciaID'].strip()
+                    hora_inicial = int(linha['HoraInicial'])
+                    hora_final = int(linha['HoraFinal'])
+
+                    #Calcular o tempo de vida
+                    tempo_vida = hora_final - hora_inicial
+
+                    #Armazenar os dados
+                    tempos_de_vida[instancia_id] = tempo_vida
+                    total_tempo_vida += tempo_vida
+                    quantidade_instancias += 1
+
+                except KeyError as e:
+                    print(f"\nErro: coluna '{e.args[0]}' não encontrada!\n")
+                    return
+                except ValueError as e:
+                    print(f"\nErro ao processar valor em uma das colunas: {e}\n")
+                    return
+
+        #Determinar a instância com o maior tempo de vida
+        instancia_maior_tempo = max(tempos_de_vida, key=tempos_de_vida.get)
+        maior_tempo = tempos_de_vida[instancia_maior_tempo]
+
+        #Calcular o tempo médio de vida
+        tempo_medio = total_tempo_vida / quantidade_instancias if quantidade_instancias > 0 else 0
+
+        #Exibir as informações
+        print()
+
+        for instancia, tempo in sorted(tempos_de_vida.items()):
+            print(f"Tempo de vida da {instancia}: {tempo} horas")
+
+        print(f"Maior tempo de vida: {maior_tempo} horas ({instancia_maior_tempo})")
+        print(f"Tempo médio de vida: {tempo_medio:.1f} horas")
+        print()
+
+    except FileNotFoundError:
+        print(f"\nErro: o arquivo '{nome_arquivo}' não foi encontrado!\n")
+    except Exception as e:
+        print(f"\nOcorreu um erro: {e}\n")
+
+analisar_tempo_vida_instancias()
