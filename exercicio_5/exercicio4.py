@@ -1,6 +1,6 @@
 #Exercício 5.1.
 
-print("\nSequência Lógica\n")
+# print("\nSequência Lógica\n")
 
 def sequencia_logica():
     
@@ -28,11 +28,11 @@ def sequencia_logica():
     except ValueError:
         print("\nVocê digitou um caracter inválido!\n")
 
-sequencia_logica()
+
 
 #Exercício 5.2.
 
-print("\nFibonacci Fácil\n")
+# print("\nFibonacci Fácil\n")
 
 def fibonacci():
     try:
@@ -54,11 +54,11 @@ def fibonacci():
     except ValueError:
         print("\nVocê digitou um caracter inválido!\n")
 
-fibonacci()
+
 
 #Exercício 5.3.
 
-print("\nFatorial Simples\n")
+# print("\nFatorial Simples\n")
 
 def fatorial_simples():
     try:
@@ -78,11 +78,11 @@ def fatorial_simples():
     except ValueError:
         print("\nVocê digitou um caracter inválido!\n")
 
-fatorial_simples()
+
 
 #Exercício 5.4.
 
-print("\nIdades\n")
+# print("\nIdades\n")
 
 def idades():
     import random
@@ -92,11 +92,11 @@ def idades():
     idades_como_string = " ".join(map(str, idades))
     print(f"\nA lista de idades gerada é: {idades_como_string}\n")
     print(f"\nA média das idade é: {media_idades:.2f}\n")
-idades()
+
 
 #Exercício 5.5.
 
-print("\nCrescimento Populacional\n")
+# print("\nCrescimento Populacional\n")
 
 def crescimento_pop():
     
@@ -160,4 +160,11 @@ def crescimento_pop():
     except ValueError:
         print("\nVocê digitou um caracter inválido!\n")
 
-crescimento_pop()
+
+#Este código será executado apenas quando o arquivo for executado diretamente
+if __name__ == "__main__":
+    sequencia_logica()
+    fibonacci()
+    fatorial_simples()
+    idades()
+    crescimento_pop()
