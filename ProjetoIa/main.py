@@ -4,6 +4,7 @@ import boto3
 from botocore.exceptions import BotoCoreError, ClientError
 import json
 from PIL import Image
+from pathlib import Path
 
 # Configuração do título da página
 st.set_page_config(page_title="NucleAI", page_icon="🌐")
@@ -83,13 +84,30 @@ def query_aws_titan(prompt, access_key, secret_key, region):
         st.error("Erro ao se comunicar com a API da AWS Titan")
         return str(error)
 
+
 # Carregar e redimensionar a logo
 image_path = "logo.jpeg"
-image = Image.open(image_path)
-image_resized = image.resize((300, 300))  # Largura e altura desejadas
+
+from pathlib import Path
+
+# Caminho para os arquivos
+image_path = Path("logo.jpeg")
+
+
+# Verifica se os arquivos existem antes de usá-los
+if image_path.exists():
+    image = Image.open(image_path)
+    image_resized = image.resize((300, 300))
+    st.image(image_resized)
+else:
+    st.error("Arquivo logo.jpeg não encontrado.")
+
+
+# image = Image.open(image_path)
+# image_resized = image.resize((300, 300))  # Largura e altura desejadas
 
 # Exibir a logo
-st.image(image_resized)
+# st.image(image_resized)
 st.write("Bem-vindo ao NucleAI! Converse com nosso chatbot")
 
 # Área para entrada de credenciais da AWS
@@ -100,8 +118,15 @@ with st.sidebar:
     aws_region = st.text_input("AWS Region", value="us-east-1")
 
     # Inserir GIF no sidebar
-    gif_url = "logo_animada.gif"
-    st.image(gif_url)
+    # gif_path = "logo_animada.gif"
+    gif_path = Path("logo_animada.gif")
+
+    if gif_path.exists():
+        st.image(str(gif_path))  # Converte Path para string
+    else:
+        st.error("Arquivo logo_animada.gif não encontrado.")
+
+    # st.image(gif_url)
 
 # Entrada de mensagem do usuário
 if prompt := st.chat_input("Digite sua mensagem"):
