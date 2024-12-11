@@ -32,6 +32,7 @@ st.markdown(
     /* Alterar cor de fundo do sidebar */
     [data-testid="stSidebar"] {
         background-color: #b68beb;
+        height: 100vh;
     }
 
     /* Tornar o sidebar flexível e alinhar o GIF ao final */
@@ -84,17 +85,10 @@ def query_aws_titan(prompt, access_key, secret_key, region):
         st.error("Erro ao se comunicar com a API da AWS Titan")
         return str(error)
 
-
 # Carregar e redimensionar a logo
-image_path = "logo.jpeg"
-
-from pathlib import Path
-
-# Caminho para os arquivos
 image_path = Path("ProjetoIa/logo.jpeg")
 
-
-# Verifica se os arquivos existem antes de usá-los
+# Verifica se os arquivos existem e exibir a logo
 if image_path.exists():
     image = Image.open(image_path)
     image_resized = image.resize((300, 300))
@@ -102,12 +96,6 @@ if image_path.exists():
 else:
     st.error("Arquivo logo.jpeg não encontrado.")
 
-
-# image = Image.open(image_path)
-# image_resized = image.resize((300, 300))  # Largura e altura desejadas
-
-# Exibir a logo
-# st.image(image_resized)
 st.write("Bem-vindo ao NucleAI! Converse com nosso chatbot")
 
 # Área para entrada de credenciais da AWS
@@ -118,15 +106,12 @@ with st.sidebar:
     aws_region = st.text_input("AWS Region", value="us-east-1")
 
     # Inserir GIF no sidebar
-    # gif_path = "logo_animada.gif"
     gif_path = Path("ProjetoIa/logo_animada.gif")
 
     if gif_path.exists():
         st.image(str(gif_path))  # Converte Path para string
     else:
         st.error("Arquivo logo_animada.gif não encontrado.")
-
-    # st.image(gif_url)
 
 # Entrada de mensagem do usuário
 if prompt := st.chat_input("Digite sua mensagem"):
