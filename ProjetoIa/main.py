@@ -32,7 +32,6 @@ st.markdown(
     /* Alterar cor de fundo do sidebar */
     [data-testid="stSidebar"] {
         background-color: #b68beb;
-        height: 100vh;
     }
 
     /* Tornar o sidebar flexível e alinhar o GIF ao final */
@@ -43,8 +42,8 @@ st.markdown(
         height: 100vh; /* Garante altura total da tela */
     }
     [data-testid="stSidebar"] img {
-        margin-top: 30px; /* Adiciona espaçamento entre os campos e o GIF */
-        margin-bottom: 10px; /* Espaçamento extra no final */
+        margin-top: 20px; /* Adiciona espaçamento entre os campos e o GIF */
+        
     }
     </style>
     """,
