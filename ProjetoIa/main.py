@@ -91,7 +91,7 @@ image_path = "logo.jpeg"
 from pathlib import Path
 
 # Caminho para os arquivos
-image_path = Path("logo.jpeg")
+image_path = Path("ProjetoIa/logo.jpeg")
 
 
 # Verifica se os arquivos existem antes de usá-los
@@ -119,7 +119,7 @@ with st.sidebar:
 
     # Inserir GIF no sidebar
     # gif_path = "logo_animada.gif"
-    gif_path = Path("logo_animada.gif")
+    gif_path = Path("ProjetoIa/logo_animada.gif")
 
     if gif_path.exists():
         st.image(str(gif_path))  # Converte Path para string
