@@ -5,10 +5,6 @@ from botocore.exceptions import BotoCoreError, ClientError
 import json
 from PIL import Image
 
-# image_path = os.path.join("assets", "WhatsApp Image 2024-12-08 at 16.43.50.jpeg")
-# image = Image.open(image_path)
-
-
 # Configuração do título da página
 st.set_page_config(page_title="NucleAI", page_icon="🌐")
 
@@ -88,7 +84,7 @@ def query_aws_titan(prompt, access_key, secret_key, region):
         return str(error)
 
 # Carregar e redimensionar a logo
-image_path = "WhatsApp Image 2024-12-08 at 16.43.50.jpeg"
+image_path = "logo.jpeg"
 image = Image.open(image_path)
 image_resized = image.resize((300, 300))  # Largura e altura desejadas
 
@@ -104,7 +100,7 @@ with st.sidebar:
     aws_region = st.text_input("AWS Region", value="us-east-1")
 
     # Inserir GIF no sidebar
-    gif_url = "WhatsApp GIF 2024-12-09 at 21.51.16.gif"
+    gif_url = "logo_animada.gif"
     st.image(gif_url)
 
 # Entrada de mensagem do usuário
