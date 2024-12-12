@@ -64,7 +64,7 @@ def query_aws_titan(prompt, access_key, secret_key, region):
 
         # Configurar o payload da requisição
         response = client.invoke_model(
-            modelId='Titan Embeddings G1 - Textv1.2',  # amazon.titan-text-premier-v1:0 ID do modelo AWS Titan
+            modelId='amazon.titan-embed-text-v1',  # amazon.titan-text-premier-v1:0 ID do modelo AWS Titan
             body=json.dumps({"inputText": prompt}).encode("utf-8"),
             contentType="application/json"
         )
