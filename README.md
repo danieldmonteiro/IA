@@ -12,4 +12,4 @@ Exercícios com o uso do código python para acessar a API da AWS, disponíveis 
 
 Elaboração do protótipo de um ChatBot da empresa Núclea, usando a biblioteca Streamlit do python e o modelo de IA Titan da AWS. Está disponível na pasta ProjetoIa.
 
-Eis o deploy do projeto: [https://projetoia1.streamlit.app/]
+[Acesse o deploy do projeto](https://projetoia1.streamlit.app/)
